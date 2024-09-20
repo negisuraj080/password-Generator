@@ -5,6 +5,7 @@ const PasswordGen = () => {
   const [numberAllowed, setNumberAllowed] = useState(false);
   const [charAllowed, setCharAllowed] = useState(false);
   const [password, setPassword] = useState("");
+  const[click,setClick] = useState("Copy")
 
   //userRef Hook
   const passwordRef = useRef(null)
@@ -27,10 +28,17 @@ const PasswordGen = () => {
     passwordRef.current?.select()
     passwordRef.current?.setSelectionRange(0,100)   //only select 100 chars
     window.navigator.clipboard.writeText(password)
+    setClick("Copied");
+
+    // Reset button text after 2 seconds
+    setTimeout(() => {
+      setClick("Copy");
+    }, 2000);
   },[password])
 
   useEffect(() => {
     passwordGenerator();
+    setClick("Copy"); // Reset button text when settings change
   }, [length, numberAllowed, charAllowed, passwordGenerator]);
 
   // function passwordGenerator(){
