@@ -38,7 +38,7 @@ const PasswordGen = () => {
 
   useEffect(() => {
     passwordGenerator();
-    setClick("Copy"); // Reset button text when settings change
+    setClick("Copy"); // Reset button text when someone click on numbers and chars
   }, [length, numberAllowed, charAllowed, passwordGenerator]);
 
   return (
